@@ -6,7 +6,7 @@ with st.sidebar :
     selected = option_menu ('Hitung Nilai Hasil CAT',
     ['Hitung Nilai TPA',
      'Hitung Nilai TBI'],                     
-    default_index=1)
+    default_index=0)
 
 # halaman hitung nilai TPA
 if (selected == 'Hitung Nilai TPA') :
@@ -73,8 +73,6 @@ if (selected == "Hitung Nilai TBI") :
 
     if Hitung :
         nilai_akhir = (nilai_konversi_listening  + nilai_konversi_structure  + nilai_konversi_reading )/3 * 10
-    
-
         st.markdown(f'<p style="font-size: 24px;">Nilai TBI Anda Adalah= {round(nilai_akhir, 2)}</p>', unsafe_allow_html=True)
 
     
