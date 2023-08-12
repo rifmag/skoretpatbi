@@ -1,15 +1,13 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
 
-# navigasi sidebar
-with st.sidebar :
-    selected = option_menu ('Hitung Nilai Hasil CAT',
-    ['Hitung Nilai TPA',
-     'Hitung Nilai TBI'],                     
-    default_index=0)
+with st.sidebar:
+    add_radio = st.radio(
+        "Pilih Tes yang diikuti",
+        ("Hitung Nilai TPA", "Hitung Nilai TBI")
+    )
 
 # halaman hitung nilai TPA
-if (selected == 'Hitung Nilai TPA') :
+if (add_radio == 'Hitung Nilai TPA') :
     st.title ('Hitung Nilai TPA')
 
 # Masukkan nilai-nilai verbal, numerikal, dan figural
@@ -26,7 +24,7 @@ if (selected == 'Hitung Nilai TPA') :
     
         st.markdown(f'<p style="font-size: 24px;">Nilai TPA Anda Adalah= {round(nilai_tpa, 2)}</p>', unsafe_allow_html=True)
 
-if (selected == "Hitung Nilai TBI") :
+if (add_radio == "Hitung Nilai TBI") :
     st.title('Hitung Nilai TBI')
 
     # Nilai asli dan nilai konversi untuk Listening
@@ -73,6 +71,8 @@ if (selected == "Hitung Nilai TBI") :
 
     if Hitung :
         nilai_akhir = (nilai_konversi_listening  + nilai_konversi_structure  + nilai_konversi_reading )/3 * 10
+    
+
         st.markdown(f'<p style="font-size: 24px;">Nilai TBI Anda Adalah= {round(nilai_akhir, 2)}</p>', unsafe_allow_html=True)
 
     
