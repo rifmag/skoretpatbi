@@ -6,7 +6,7 @@ with st.sidebar :
     selected = option_menu ('Hitung Nilai Hasil CAT',
     ['Hitung Nilai TPA',
      'Hitung Nilai TBI'],                     
-    default_index=0)
+    default_index=1)
 
 # halaman hitung nilai TPA
 if (selected == 'Hitung Nilai TPA') :
