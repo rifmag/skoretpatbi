@@ -1,12 +1,21 @@
 import streamlit as st
+from fpdf import FPDF
+
+class PDF(FPDF):
+    def header(self):
+        self.set_font('Arial', 'B', 12)
+        self.cell(0, 10, 'Hasil Perhitungan', 0, 1, 'C')
+def main ():
+    st.title("Aplikasi Perhitungan dan Simpan PDF")
+
 
 with st.sidebar:
-    add_radio = st.radio(
-        "Pilih Tes yang diikuti",
-        ("Hitung Nilai TPA", "Hitung Nilai TBI")
-    )
+     add_radio = st.radio(
+            "Pilih Tes yang diikuti",
+            ("Hitung Nilai TPA", "Hitung Nilai TBI")
+        )
 
-# halaman hitung nilai TPA
+    # halaman hitung nilai TPA
 if (add_radio == 'Hitung Nilai TPA') :
     st.title ('Hitung Nilai TPA')
 
@@ -20,11 +29,55 @@ if (add_radio == 'Hitung Nilai TPA') :
     if Hitung :
         rata_rata = (nilai_verbal + nilai_numerikal + nilai_figural) / 3
         nilai_tpa = ((rata_rata / 100)*600)+200
-
-    
         st.markdown(f'<p style="font-size: 24px;">Nilai TPA Anda Adalah= {round(nilai_tpa, 2)}</p>', unsafe_allow_html=True)
+        
+        # Simpan hasil dalam PDF
+        pdf = PDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+    # tambah logopkm
+        pdf.image("logopkm.png", x=10, y=8, w=25)
 
-if (add_radio == "Hitung Nilai TBI") :
+        pdf.cell(200, 10, f" ", ln=True, align="C")
+
+    # Tambahkan tabel
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(50, 10, "Subtest", 1)
+        pdf.cell(50, 10, "Nilai", 1)
+        pdf.ln()
+            
+        pdf.set_font("Arial", size=12)
+        pdf.cell(50, 10, "Verbal", 1)
+        pdf.cell(50, 10, str(nilai_verbal), 1)
+        pdf.ln()
+
+        pdf.cell(50, 10, "Numerikal", 1)
+        pdf.cell(50, 10, str(nilai_numerikal), 1)
+        pdf.ln()
+
+        pdf.cell(50, 10, "Figural", 1)
+        pdf.cell(50, 10, str(nilai_figural), 1)
+        pdf.ln()
+            
+        pdf.cell(50, 10, "Skor TPA", 1)
+        pdf.cell(50, 10, f"{round(nilai_tpa, 2)}", 1)
+        pdf.ln()
+
+        # Tambahkan kata-kata "Hormat Kami Tim PTT"
+        pdf.cell(200, 10, "Hormat Kami", ln=True, align="C")
+        pdf.cell(200, 10, "Tim PTPM", ln=True, align="C")
+
+        pdf_output = pdf.output(dest="S").encode("latin1")
+
+        # Tampilkan tombol download PDF
+        st.download_button(
+        label="Download Hasil Perhitungan TPA (PDF)",
+        data=pdf_output,
+        file_name="hasil_perhitungan_tpa.pdf",
+        mime="application/pdf"
+            )
+    
+elif (add_radio == "Hitung Nilai TBI") :
     st.title('Hitung Nilai TBI')
 
     # Nilai asli dan nilai konversi untuk Listening
@@ -71,9 +124,53 @@ if (add_radio == "Hitung Nilai TBI") :
 
     if Hitung :
         nilai_akhir = (nilai_konversi_listening  + nilai_konversi_structure  + nilai_konversi_reading )/3 * 10
-    
-
         st.markdown(f'<p style="font-size: 24px;">Nilai TBI Anda Adalah= {round(nilai_akhir, 2)}</p>', unsafe_allow_html=True)
+    # Simpan hasil dalam PDF
+        pdf = PDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+    # tambah logopkm
+        pdf.image("logopkm.png", x=10, y=8, w=25)
+
+        pdf.cell(200, 10, f" ", ln=True, align="C")
+
+    # Tambahkan tabel
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(50, 10, "Subtest", 1)
+        pdf.cell(50, 10, "Nilai", 1)
+        pdf.ln()
+            
+        pdf.set_font("Arial", size=12)
+        pdf.cell(50, 10, "Listening", 1)
+        pdf.cell(50, 10, str(nilai_konversi_listening), 1)
+        pdf.ln()
+
+        pdf.cell(50, 10, "Structure", 1)
+        pdf.cell(50, 10, str(nilai_konversi_structure), 1)
+        pdf.ln()
+
+        pdf.cell(50, 10, "Reading", 1)
+        pdf.cell(50, 10, str(nilai_konversi_reading), 1)
+        pdf.ln()
+            
+        pdf.cell(50, 10, "Skor TBI", 1)
+        pdf.cell(50, 10, f"{round(nilai_akhir, 2)}", 1)
+        pdf.ln()
+
+        # Tambahkan kata-kata "Hormat Kami Tim PTT"
+        pdf.cell(200, 10, "Hormat Kami", ln=True, align="C")
+        pdf.cell(200, 10, "Tim PTPM", ln=True, align="C")
+
+        pdf_output = pdf.output(dest="S").encode("latin1")
+
+
+    # Tampilkan tombol download PDF
+        st.download_button(
+        label="Download Hasil Perhitungan TBI (PDF)",
+        data=pdf_output,
+        file_name="hasil_perhitungan_tbi.pdf",
+        mime="application/pdf"
+        )
 
 def add_bg_from_url():
     st.markdown(
@@ -89,4 +186,4 @@ def add_bg_from_url():
          unsafe_allow_html=True
      )
 
-add_bg_from_url()     
+add_bg_from_url() 
