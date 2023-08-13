@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_option_menu import option_menu
 from fpdf import FPDF
 
 class PDF(FPDF):
@@ -8,15 +9,15 @@ class PDF(FPDF):
 def main ():
     st.title("Aplikasi Perhitungan dan Simpan PDF")
 
+# navigasi sidebar
+with st.sidebar :
+    selected = option_menu ('Hitung Nilai Hasil CAT',
+    ['Hitung Nilai TPA',
+     'Hitung Nilai TBI'],                     
+    default_index=1)
 
-with st.sidebar:
-     add_radio = st.radio(
-            "Pilih Tes yang diikuti",
-            ("Hitung Nilai TPA", "Hitung Nilai TBI")
-        )
-
-    # halaman hitung nilai TPA
-if (add_radio == 'Hitung Nilai TPA') :
+# halaman hitung nilai TPA
+if (selected == 'Hitung Nilai TPA') :
     st.title ('Hitung Nilai TPA')
 
 # Masukkan nilai-nilai verbal, numerikal, dan figural
@@ -30,8 +31,7 @@ if (add_radio == 'Hitung Nilai TPA') :
         rata_rata = (nilai_verbal + nilai_numerikal + nilai_figural) / 3
         nilai_tpa = ((rata_rata / 100)*600)+200
         st.markdown(f'<p style="font-size: 24px;">Nilai TPA Anda Adalah= {round(nilai_tpa, 2)}</p>', unsafe_allow_html=True)
-        
-        # Simpan hasil dalam PDF
+# Simpan hasil dalam PDF
         pdf = PDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
@@ -39,7 +39,7 @@ if (add_radio == 'Hitung Nilai TPA') :
         pdf.image("logopkm.png", x=10, y=8, w=25)
 
         pdf.cell(200, 10, f" ", ln=True, align="C")
-
+    
     # Tambahkan tabel
         pdf.set_font("Arial", "B", 12)
         pdf.cell(50, 10, "Subtest", 1)
@@ -64,7 +64,7 @@ if (add_radio == 'Hitung Nilai TPA') :
         pdf.ln()
 
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
-        pdf.cell(200, 10, "Hormat Kami", ln=True, align="C")
+        pdf.cell(200, 50, "Hormat Kami", ln=True, align="C")
         pdf.cell(200, 10, "Tim PTPM", ln=True, align="C")
 
         pdf_output = pdf.output(dest="S").encode("latin1")
@@ -76,8 +76,8 @@ if (add_radio == 'Hitung Nilai TPA') :
         file_name="hasil_perhitungan_tpa.pdf",
         mime="application/pdf"
             )
-    
-elif (add_radio == "Hitung Nilai TBI") :
+
+if (selected == "Hitung Nilai TBI") :
     st.title('Hitung Nilai TBI')
 
     # Nilai asli dan nilai konversi untuk Listening
@@ -125,7 +125,8 @@ elif (add_radio == "Hitung Nilai TBI") :
     if Hitung :
         nilai_akhir = (nilai_konversi_listening  + nilai_konversi_structure  + nilai_konversi_reading )/3 * 10
         st.markdown(f'<p style="font-size: 24px;">Nilai TBI Anda Adalah= {round(nilai_akhir, 2)}</p>', unsafe_allow_html=True)
-    # Simpan hasil dalam PDF
+
+# Simpan hasil dalam PDF
         pdf = PDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
@@ -158,7 +159,7 @@ elif (add_radio == "Hitung Nilai TBI") :
         pdf.ln()
 
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
-        pdf.cell(200, 10, "Hormat Kami", ln=True, align="C")
+        pdf.cell(200, 50, "Hormat Kami", ln=True, align="C")
         pdf.cell(200, 10, "Tim PTPM", ln=True, align="C")
 
         pdf_output = pdf.output(dest="S").encode("latin1")
@@ -171,13 +172,13 @@ elif (add_radio == "Hitung Nilai TBI") :
         file_name="hasil_perhitungan_tbi.pdf",
         mime="application/pdf"
         )
-
+    
 def add_bg_from_url():
     st.markdown(
          f"""
          <style>
          .stApp {{
-             background-image: url("https://img.freepik.com/free-photo/education-day-arrangement-table-with-copy-space_23-2148721266.jpg?size=626&ext=jpg&ga=GA1.2.2093539738.1691888666&semt=sph.jpg");
+             background-image: url("https://cdn.pixabay.com/photo/2019/04/24/11/27/flowers-4151900_960_720.jpg");
              background-attachment: fixed;
              background-size: cover
          }}
@@ -186,4 +187,4 @@ def add_bg_from_url():
          unsafe_allow_html=True
      )
 
-add_bg_from_url() 
+add_bg_from_url()
