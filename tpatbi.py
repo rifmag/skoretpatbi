@@ -4,8 +4,8 @@ from fpdf import FPDF
 
 class PDF(FPDF):
     def header(self):
-        self.set_font('Arial', 'B', 12)
-        self.cell(0, 10, 'Hasil Perhitungan', 0, 1, 'C')
+        self.set_font('Arial', 'B', 16)
+        self.cell(0, 10, 'Hasil Tes Anda', 0, 1, 'C')
 def main ():
     st.title("Aplikasi Perhitungan dan Simpan PDF")
 
