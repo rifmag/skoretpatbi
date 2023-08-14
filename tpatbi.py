@@ -22,9 +22,9 @@ if (selected == 'Hitung Nilai TPA') :
 
 # Masukkan nilai-nilai verbal, numerikal, dan figural
     nama = st.text_input ("Nama")
-    nilai_verbal = st.number_input ("Masukkan Nilai Verbal", 0)
-    nilai_numerikal = st.number_input ("Masukkan Nilai Numerikal", 0)
-    nilai_figural = st.number_input ("Masukkan Nilai Figural", 0)
+    nilai_verbal = float(st.text_input ("Masukkan Nilai Verbal", 0))
+    nilai_numerikal =float(st.text_input ("Masukkan Nilai Numerikal", 0))
+    nilai_figural = float(st.text_input ("Masukkan Nilai Figural", 0))
 
     Hitung = st.button('Hitung Nilai TPA')
 
