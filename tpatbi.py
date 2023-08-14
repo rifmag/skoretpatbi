@@ -41,8 +41,8 @@ if (selected == 'Hitung Nilai TPA') :
         pdf.cell(200, 10, f" ", ln=True, align="C")
         
     # tambah nama
-        pdf.cell(50, 10, "Nama: ")
-        pdf.cell(50, 10, str(nama))
+        pdf.cell(50, 10, "Nama: ", 'B')
+        pdf.cell(50, 10, str(nama), 'B')
         pdf.cell(200, 10, f" ", ln=True)
         
     # Tambahkan tabel
