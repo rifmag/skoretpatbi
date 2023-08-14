@@ -69,7 +69,7 @@ if (selected == 'Hitung Nilai TPA') :
         pdf.ln()
 
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
-        pdf.cell(200, 50, "Hormat Kami", ln=True, align="C")
+        pdf.cell(200, 50, "Best Regards,", ln=True, align="C")
         pdf.cell(200, 10, "Pusdiklat KM", ln=True, align="C")
 
         pdf_output = pdf.output(dest="S").encode("latin1")
@@ -170,7 +170,7 @@ if (selected == "Hitung Nilai TBI") :
         pdf.ln()
 
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
-        pdf.cell(200, 50, "Hormat Kami", ln=True, align="C")
+        pdf.cell(200, 50, "Best Regards,", ln=True, align="C")
         pdf.cell(200, 10, "Pusdiklat KM", ln=True, align="C")
 
         pdf_output = pdf.output(dest="S").encode("latin1")
