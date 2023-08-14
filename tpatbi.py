@@ -21,6 +21,7 @@ if (selected == 'Hitung Nilai TPA') :
     st.title ('Hitung Nilai TPA')
 
 # Masukkan nilai-nilai verbal, numerikal, dan figural
+    nama = st.text_input ("Nama")
     nilai_verbal = st.number_input ("Masukkan Nilai Verbal", 0)
     nilai_numerikal = st.number_input ("Masukkan Nilai Numerikal", 0)
     nilai_figural = st.number_input ("Masukkan Nilai Figural", 0)
@@ -34,19 +35,23 @@ if (selected == 'Hitung Nilai TPA') :
 # Simpan hasil dalam PDF
         pdf = PDF()
         pdf.add_page()
-        pdf.set_font("Arial", size=12)
+        pdf.set_font("Courier", size=12)
     # tambah logopkm
         pdf.image("logopkm.png", x=10, y=8, w=25)
-
         pdf.cell(200, 10, f" ", ln=True, align="C")
-    
+        
+    # tambah nama
+        pdf.cell(50, 10, "Nama: ")
+        pdf.cell(50, 10, str(nama))
+        pdf.cell(200, 10, f" ", ln=True)
+        
     # Tambahkan tabel
-        pdf.set_font("Arial", "B", 12)
+        pdf.set_font("Courier", "B", 12)
         pdf.cell(50, 10, "Subtest", 1)
         pdf.cell(50, 10, "Nilai", 1)
         pdf.ln()
             
-        pdf.set_font("Arial", size=12)
+        pdf.set_font("Courier", size=12)
         pdf.cell(50, 10, "Verbal", 1)
         pdf.cell(50, 10, str(nilai_verbal), 1)
         pdf.ln()
@@ -65,7 +70,7 @@ if (selected == 'Hitung Nilai TPA') :
 
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
         pdf.cell(200, 50, "Hormat Kami", ln=True, align="C")
-        pdf.cell(200, 10, "Tim PTPM", ln=True, align="C")
+        pdf.cell(200, 10, "Pusdiklat KM", ln=True, align="C")
 
         pdf_output = pdf.output(dest="S").encode("latin1")
 
@@ -107,6 +112,8 @@ if (selected == "Hitung Nilai TBI") :
     # Fungsi konversi_nilai dan konversi_dict seperti yang telah diberikan sebelumnya
 
     # Input nilai dari pengguna
+    nama = st.text_input ("Nama")
+    
     nilai_input = float(st.text_input ("Masukkan Nilai Listening", 0))
     nilai_asli = nilai_input
     nilai_konversi_listening = konversi_nilai('Listening', nilai_asli)
@@ -129,19 +136,23 @@ if (selected == "Hitung Nilai TBI") :
 # Simpan hasil dalam PDF
         pdf = PDF()
         pdf.add_page()
-        pdf.set_font("Arial", size=12)
+        pdf.set_font("Courier", size=12)
     # tambah logopkm
         pdf.image("logopkm.png", x=10, y=8, w=25)
-
         pdf.cell(200, 10, f" ", ln=True, align="C")
-
+        
+# tambah nama
+        pdf.cell(50, 10, "Nama: ")
+        pdf.cell(50, 10, str(nama))
+        pdf.cell(200, 10, f" ", ln=True)
+        
     # Tambahkan tabel
-        pdf.set_font("Arial", "B", 12)
+        pdf.set_font("Courier", "B", 12)
         pdf.cell(50, 10, "Subtest", 1)
         pdf.cell(50, 10, "Nilai", 1)
         pdf.ln()
             
-        pdf.set_font("Arial", size=12)
+        pdf.set_font("Courier", size=12)
         pdf.cell(50, 10, "Listening", 1)
         pdf.cell(50, 10, str(nilai_konversi_listening), 1)
         pdf.ln()
@@ -160,7 +171,7 @@ if (selected == "Hitung Nilai TBI") :
 
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
         pdf.cell(200, 50, "Hormat Kami", ln=True, align="C")
-        pdf.cell(200, 10, "Tim PTPM", ln=True, align="C")
+        pdf.cell(200, 10, "Pusdiklat KM", ln=True, align="C")
 
         pdf_output = pdf.output(dest="S").encode("latin1")
 
