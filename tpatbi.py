@@ -170,7 +170,7 @@ if (selected == "Hitung Nilai TBI") :
     # Tambahkan tabel
         pdf.set_font("Courier", "B", 12)
         pdf.cell(50, 10, "Subtest", 1, 0, "C")
-        pdf.cell(50, 10, "Nilai", 1, 0, "C")
+        pdf.cell(50, 10, "Nilai Konversi", 1, 0, "C")
         pdf.ln()
             
         pdf.set_font("Courier", size=12)
