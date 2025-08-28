@@ -40,7 +40,7 @@ if (selected == 'Hitung Nilai TPA') :
         pdf.add_page()
         pdf.set_font("Courier", size=12)
     # tambah logopkm
-        pdf.image("logopkm.png", x=10, y=8, w=25)
+        pdf.image("logopusbinjf.png", x=10, y=8, w=25)
         pdf.cell(200, 10, f" ", ln=True, align="C")
     # tambah nama
         pdf.cell(50, 10, "Nama: ")
@@ -77,7 +77,7 @@ if (selected == 'Hitung Nilai TPA') :
         
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
         pdf.cell(200, 50, "Best Regards,", ln=True, align="C")
-        pdf.cell(200, 10, "Pusdiklat KM", ln=True, align="C")
+        pdf.cell(200, 10, "Pusbin JFPM", ln=True, align="C")
 
         pdf.set_y(0)  # Geser posisi ke atas untuk footer
         pdf.cell(0, 10, f"Dicetak: {current_date}", 0, 0, "R")
@@ -161,7 +161,7 @@ if (selected == "Hitung Nilai TBI") :
         pdf.add_page()
         pdf.set_font("Courier", size=12)
     # tambah logopkm
-        pdf.image("logopkm.png", x=10, y=8, w=25)
+        pdf.image("logopusbinjf.png", x=10, y=8, w=25)
         pdf.cell(200, 10, f" ", ln=True, align="C")
     # tambah nama
         pdf.cell(50, 10, "Nama: ")
@@ -203,7 +203,7 @@ if (selected == "Hitung Nilai TBI") :
         # Tambahkan kata-kata "Hormat Kami Tim PTT"
         pdf.set_font("Courier", size=12)
         pdf.cell(200, 50, "Best Regards,", ln=True, align="C")
-        pdf.cell(200, 10, "Pusdiklat KM", ln=True, align="C")
+        pdf.cell(200, 10, "Pusbin JFPM", ln=True, align="C")
 
         pdf.set_y(0)  # Geser posisi ke atas untuk footer
         pdf.cell(0, 10, f"Dicetak: {current_date}", 0, 0, "R")
@@ -233,3 +233,4 @@ def add_bg_from_url():
      )
 
 add_bg_from_url()
+
